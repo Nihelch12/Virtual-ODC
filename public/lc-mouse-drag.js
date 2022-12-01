@@ -15,11 +15,12 @@
         return true;
     }
 
-
     /* 
      * Public class initializing the plugin for each targeted element 
      * suggested ratio = 0.3
      */
+
+
     window.lc_mouseDrag = function (attachTo, ratio = 0.3, ignoreX = false, ignoreY = false) {
         if (!attachTo) {
             return console.error('You must provide a valid selector or DOM object as first argument');
@@ -35,13 +36,14 @@
             // clean problematic selectors
             (selector.match(/(#[0-9][^\s:,]*)/g) || []).forEach(function (n) {
                 selector = selector.replace(n, '[id="' + n.replace("#", "") + '"]');
+
             });
 
             return document.querySelectorAll(selector);
         };
 
-
         /* perform */
+        
         const mouseDrag = function ($elem) {
             let trackX = (!ignoreX) ? true : false,
                 trackY = (!ignoreY) ? true : false,
@@ -55,8 +57,10 @@
                 scrollDif = 0,
                 animation = null;
 
+            var followables = document.getElementsByClassName("followable");
 
             $elem.addEventListener('mousedown', (e) => {
+
                 e.preventDefault();
                 curDown = true;
 
@@ -64,6 +68,7 @@
                 startScrollX = parseInt($elem.scrollLeft, 10);
                 curYPos = e.clientY;
                 curXPos = e.clientX;
+
             });
 
 
@@ -87,33 +92,41 @@
 
 
                 if (trackY) {
+
                     scroll_obj.top = newScrollY;
-                    //  document.getElementById('keypoint').style.top = scroll_obj.top;
+
                 }
                 if (trackX) {
+
                     scroll_obj.left = newScrollX;
-                    // document.getElementById('keypoint').left = scroll_obj.left;
-                    // document.getElementById('keypoint').style.left = scroll_obj.left;
+
                 }
+                // Array.from(followables).forEach((elem) => {
+
+                //     var translateY = document.getElementById('videoplayer').getBoundingClientRect().top - window.scrollY
+                //     var translateX = document.getElementById('videoplayer').getBoundingClientRect().left - window.scrollX
+
+                //    var x= elem.style.transform = `translate3d(${translateX}px,${translateY}px,0px)`
+
+                // })
+
+
+
 
                 animation = $elem.scroll(scroll_obj);
-                // console.log(document.getElementById('keypoint').left +"t1")
-                // console.log(scroll_obj.left +"t2")
-
+                // animation = $elem.scroll(x1);
 
 
             });
-
-
 
             document.body.addEventListener('mouseup', (e) => {
                 curDown = false;
             });
 
-
-
             $elem.addEventListener('mousemove', (e) => {
+
                 if (curDown === true) {
+
                     if (animation) {
                         animation.pause();
                     }
@@ -122,32 +135,32 @@
                         behavior: 'auto'
                     };
 
-
                     if (trackY) {
+
                         scroll_obj.top = startScrollY + (curYPos - e.clientY);
-                        document.getElementById('keypoint').top = scroll_obj.top;
 
                     }
+
                     if (trackX) {
+
                         scroll_obj.left = startScrollX + (curXPos - e.clientX);
-                        document.getElementById('keypoint').left = scroll_obj.left;
-                    }
-                    let transform = {
-                        behavior: 'auto',
-                        top: document.getElementById('keypoint').top,
-                        left: document.getElementById('keypoint').left
-                    }
-                    var x = document.getElementById('keypoint').style.transform = "translate( " + transform.left + "px) ,(" + transform.top + "px))";
 
-                    console.log(x)
+                    }
 
+                    Array.from(followables).forEach((elem) => {
+
+                        var translateY = document.getElementById('videoplayer').getBoundingClientRect().top - window.scrollY
+                        var translateX = document.getElementById('videoplayer').getBoundingClientRect().left - window.scrollX
+
+                        elem.style.transform = `translate3d(${translateX}px,${translateY}px,0px)`
+
+                    })
 
                     $elem.scroll(scroll_obj);
-                    //document.getElementById('keypoint').scroll(transform);
+
                 }
             });
         };
-
 
         // init
         get_elems(attachTo).forEach(($el) => {
@@ -159,6 +172,7 @@
             }
 
             mouseDrag($el);
+
         });
     };
 })();    
