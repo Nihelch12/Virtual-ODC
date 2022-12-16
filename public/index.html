@@ -4,307 +4,70 @@
 <head>
     <meta charset="utf-8">
     <title>Virtual ODC</title>
-    <style>
-        html {
-            margin: -8px;
-            overflow: hidden;
-        }
 
-        body * {
-            box-sizing: border-box;
-            -webkit-user-select: none;
-            -moz-user-select: moz-none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        h2 {
-            font-family: segoe ui, helvetica neue, helvetica, arial, sans-serif;
-            font-size: 28px;
-            text-align: center;
-            margin: 40px auto 30px;
-        }
-
-        #wrap {
-            width: 100%;
-            height: 100vh;
-            margin: auto;
-            overflow: hidden;
-            line-height: 0;
-            font-size: 0;
-        }
-
-        #inner {
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-        }
-
-        /* IMPORTANT CSS RULES FOR A CORRECT DESKTOP USAGE */
-        body:not(.lc_mousedrag_is_mobile) #inner {
-            overflow: hidden;
-            cursor: grab;
-        }
-
-        body:not(.lc_mousedrag_is_mobile) #inner:active {
-            cursor: grabbing;
-        }
-
-        body:not(.lc_mousedrag_is_mobile) #inner a {
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-
-        /* .followable {
-            position: absolute;
-
-        } */
-
-        .keypoint-1 {
-            position: absolute;
-            border-radius: 50%;
-            top: 289px;
-            left: 767px;
-            border: 3px solid #d87c21;
-            background-color: #d87c21;
-        }
-
-        .keypoint-2 {
-
-            position: absolute;
-            border-radius: 50%;
-            top: 528px;
-            left: 663px;
-            border: 3px solid #d87c21;
-            background-color: #d87c21;
-        }
-
-        .keypoint-3 {
-            position: absolute;
-            border-radius: 50%;
-            top: 684px;
-            left: 1305px;
-            border: 3px solid #d97007;
-            background-color: #d97007;
-        }
-
-
-        .icon {
-            text-align: center;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .icon a {
-            display: block;
-            z-index: 2;
-            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .icon a {
-            line-height: 60px;
-            font-size: 25px;
-        }
-
-        .icon .tooltip {
-            position: absolute;
-            top: 0;
-            z-index: 1;
-            background: #fff;
-            color: #fff;
-            padding: 16px 23px;
-            font-size: 15px;
-            font-weight: 500;
-            border-radius: 25px;
-            opacity: 0;
-            pointer-events: none;
-            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .icon:hover .tooltip {
-
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .icon .tooltip:before {
-            position: absolute;
-            content: "";
-            height: 15px;
-            width: 15px;
-            background: #fff;
-            left: 50%;
-            bottom: -6px;
-            transform: translateX(-50%) rotate(45deg);
-            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .icon:hover a {
-            color: #fff;
-        }
-
-
-
-        .icon:hover a,
-        .icon:hover .tooltip {
-            text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
-        }
-
-        .icon:hover a,
-        .icon:hover .tooltip,
-        .icon:hover .tooltip:before {
-            /* background: #87b06a; */
-            background: #de9d23;
-
-        }
-
-        .keypoint-1 a {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: .8;
-            background: #ffbc86;
-            border-radius: inherit;
-            animation: pulseAnimation 2s ease-out infinite;
-        }
-
-        @keyframes pulseAnimation {
-            100% {
-                opacity: 0;
-                transform: scale(3);
-            }
-        }
-
-        .keypoint-2 a {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: .8;
-            background: #ffbc86;
-            border-radius: inherit;
-            animation: pulseAnimation 2s ease-out infinite;
-
-        }
-
-        @keyframes pulseAnimation {
-            100% {
-                opacity: 0;
-                transform: scale(3);
-            }
-        }
-
-        .keypoint-3 a {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: .8;
-            background: #ffbc86;
-            border-radius: inherit;
-            animation: pulseAnimation 2s ease-out infinite;
-
-        }
-
-        @keyframes pulseAnimation {
-            100% {
-                opacity: 0;
-                transform: scale(3);
-            }
-        }
-
-        .loader {
-            position: absolute;
-            background-color: 0%;
-            width: 100%;
-            height: 100vh;
-            z-index: 99;
-            left: -100%;
-            -webkit-transition: .5s;
-            transition: .5s;
-            
-        }
-
-        .loader img {
-            position: absolute;
-            left: 37%;
-            top: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
-    </style>
 </head>
 
 <body>
+    <img src="/menu.png" style="top: 0px;
+    left: 0px;
+    width: 1920px;
+    height: 100px;
+    margin: -20px;" />
     <div id="wrap">
         <div id="inner">
 
-            <!-- <audio autoplay="autoplay">
-                <source src="audio/Playground Fun.mp3" />     
-            </audio> -->
+            <audio autoplay src="audio/Playground Fun.mp3"></audio>
+
             <div class="loader" id="loader">
-                <img src="Cloud-transition(1).png" alt="">
+                <img  src="Cloud-transition(1).png" alt="">
             </div>
 
             <div class="icon">
                 <div class="tooltip" style="top: 240px;left: 715px;">
                     Ecole du code
                 </div>
-                <div class="keypoint-1" style="height: 30px; width: 30px;" >
-               
-                 <a onclick="appearP2()"></a>
-                
+                <div class="keypoint-1" style="height: 30px; width: 30px;">
+                    <a href="odc.html"></a>
+                </div>
             </div>
-            </div>
-           
-
-            <!-- <div id="page1">
-                <a onclick="appearP2()">Loader</a>
-             
-                <video autoplay="autoplay" loop="loop" muted src="videos/VODCtest9.mp4"> </video>
-                <br>
-                  </h1>
-               </div> -->
 
             <div class="icon">
                 <div class="tooltip" style=" top: 480px;left: 618px;">
-                    Orange Lab
+                    Orange Fab
                 </div>
                 <div class="keypoint-2" style="height: 30px; width: 30px;">
-                    <a href="videos/CodingSchool.mp4">
-                    </a>
+                    <a onclick="appearP2()"></a>
                 </div>
             </div>
-
 
             <div class="icon">
                 <div class="tooltip" style="top: 635px;left: 1271px;">
                     Fab Lab
                 </div>
                 <div class="keypoint-3" style="height: 30px; width: 30px;">
-
-                    <a href="videos/CodingSchool.mp4">
-                    </a>
+                    <a onclick="appearP3()"></a>
                 </div>
             </div>
 
-           <video id="page1" autoplay="autoplay" loop="loop" muted src="videos/VODCtest9.mp4"> </video>
- <div id="page2">
-                    <video  autoplay="autoplay" loop="loop" muted src="videos/CodingSchool.mp4"> </video>
-                </div>
+
+            <div>
+                <video id="page1" autoplay="autoplay" loop="loop" muted src="videos/VODCtest13.mp4"> </video>
+            </div>
+
+            <div>
+                <video id="page3" autoplay="autoplay" loop="loop" muted src="videos/OrangeFab6.mp4"> </video>
+            </div>
+
+
+
         </div>
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script src="test.js" type="text/javascript"></script>
 
+
+    <script src="test.js" type="text/javascript"></script>
     <script src="lc-mouse-drag.js" type="text/javascript"></script>
     <script src="lc-mouse-drag.min.js" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="css/style.css">
 
 
     <script type="text/javascript">

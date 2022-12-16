@@ -1,0 +1,249 @@
+html {
+    margin: -8px;
+    overflow: hidden;
+}
+
+body * {
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+h2 {
+    font-family: segoe ui, helvetica neue, helvetica, arial, sans-serif;
+    font-size: 28px;
+    text-align: center;
+    margin: 40px auto 30px;
+}
+
+#wrap {
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+}
+
+#inner {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+/* IMPORTANT CSS RULES FOR A CORRECT DESKTOP USAGE */
+body:not(.lc_mousedrag_is_mobile) #inner {
+    overflow: hidden;
+    cursor: grab;
+}
+
+body:not(.lc_mousedrag_is_mobile) #inner:active {
+    cursor: grabbing;
+}
+
+body:not(.lc_mousedrag_is_mobile) #inner a {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+.keypoint-1 {
+    position: absolute;
+    border-radius: 50%;
+    top: 289px;
+    left: 767px;
+    border: 3px solid #dfd9cc;
+    background-color: #ffb300;
+}
+
+.keypoint-2 {
+
+    position: absolute;
+    border-radius: 50%;
+    top: 528px;
+    left: 663px;
+    border: 3px solid #dfd9cc;
+    background-color: #ffb300;
+}
+
+.keypoint-3 {
+    position: absolute;
+    border-radius: 50%;
+    top: 684px;
+    left: 1305px;
+    border: 3px solid #dfd9cc;
+    background-color: #ffb300;
+}
+
+.icon {
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.icon a {
+    display: block;
+    z-index: 2;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon a {
+    line-height: 60px;
+    font-size: 25px;
+}
+
+.icon .tooltip {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+    color: rgb(0, 0, 0);
+    padding: 16px 23px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 25px;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.icon .tooltip:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background: #fff;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%) rotate(45deg);
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon:hover a {
+    color: #fff;
+}
+
+
+
+.icon:hover a,
+.icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.icon:hover a,
+.icon:hover .tooltip,
+.icon:hover .tooltip:before {
+    /* background: #87b06a; */
+    background: #fff;
+    
+}
+
+.keypoint-1 a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+    background: inherit;
+    border-radius: inherit;
+    animation: pulseAnimation 2s ease-out infinite;
+}
+
+@keyframes pulseAnimation {
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+.keypoint-2 a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+    background: inherit;
+    border-radius: inherit;
+    animation: pulseAnimation 2s ease-out infinite;
+}
+
+@keyframes pulseAnimation {
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+.keypoint-3 a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+    background: #ffbc86;
+    border-radius: inherit;
+    animation: pulseAnimation 2s ease-out infinite;
+
+}
+
+@keyframes pulseAnimation {
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+.loader {
+    position: absolute;
+    background-color: 0%;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+    left: -100%;
+    -webkit-transition: .5s;
+    transition: .5s;
+
+}
+
+.loader img {
+    position: absolute;
+    left: 37%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.room__contact {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 45px);
+    width: 70px;
+  }
+  .u-box-1by1 {
+    position: relative;
+  }
+  .u-bg-white {
+    background-color: #fff;
+  }
+  .u-shadow {
+    -webkit-box-shadow: 0 3px 15px rgba(0,0,0,.25);
+    box-shadow: 0 3px 15px rgba(0,0,0,.25);
+  }
+  .u-round {
+    border-radius: 50%;
+  }
+  .u-cursor-pointer {
+    cursor: pointer;
+  }
+  

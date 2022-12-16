@@ -110,9 +110,6 @@
 
                 // })
 
-
-
-
                 animation = $elem.scroll(scroll_obj);
                 // animation = $elem.scroll(x1);
 
