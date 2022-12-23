@@ -108,7 +108,7 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     padding: 16px 23px;
     font-size: 15px;
     font-weight: 500;
-    border-radius: 25px;
+    border-radius: 0px;
     opacity: 0;
     pointer-events: none;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -247,3 +247,6 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     cursor: pointer;
   }
   
+  #blur.active{
+    filter:brightness(40%);
+  }

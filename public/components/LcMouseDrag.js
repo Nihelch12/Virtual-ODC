@@ -11,16 +11,17 @@
     "use strict";
 
     /* prevent multiple script inits */
-    if (typeof (window.lc_mouseDrag) == 'function') {
+    if (typeof (window.lc_mouseDrag) == 'function')   {
         return true;
     }
-
+    
+  
     /* 
      * Public class initializing the plugin for each targeted element 
      * suggested ratio = 0.3
      */
 
-
+    
     window.lc_mouseDrag = function (attachTo, ratio = 0.3, ignoreX = false, ignoreY = false) {
         if (!attachTo) {
             return console.error('You must provide a valid selector or DOM object as first argument');

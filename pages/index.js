@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 export default function Home() {
   const theme = {
-    background: '#f5f8fb',
+    background: 'white',
     fontFamily: 'Helvetica Neue',
     headerBgColor: 'black',
     headerFontColor: '#fff',
@@ -14,40 +14,43 @@ export default function Home() {
     botFontColor: '#000000',
     userBubbleColor: '#F16E00',
     userFontColor: '#ffffff',
-    outerWidth: '26px',
+    outerWidth: '26px'
     
   };
   return (
     <div style={{ display:"flex", justifyContent: "center"}}>
       <style global js>{`
        .iBOxRA{
-        width: 450px
+        width: 300px
       }
-      .dNHtKL:disabled{
-        background: none 
-      }
+      // .dNHtKL:disabled{
+      //   background: none 
+      // }
       .bZjSBb{
         width:880px
       }
-      .hDiPRc{
-        position: unset
-      }
-      .dNHtKL{
-        border-top: none 
-      }
+      // .hDiPRc{
+      //   position: unset
+      // }
+      // .dNHtKL{
+      //   border-top: none 
+      // }
       .klvvmm{
-        width:450px;
+        width:300px;
 
       }
+      
       `}</style>
       <ThemeProvider theme={theme}>
-        <ChatBot
-          bubbleOptionStyle= {{ backgroundColor: "white", color: "black" }}
-          footerStyle= 'hidden'
+        <ChatBot style={{borderRadius: "0px",top:"-600px",left:"280px",height: "550px",width:"500px"}}
+          botDelay="1300"
+          bubbleOptionStyle= {{ backgroundColor: "white", color: "#F16E00", border: '1px solid #F16E00'}}
+          footerStyle ={{display: "none", height: "30px"}}
+          bubbleStyle={{width: "450px"}}
           placeholder=''
           hideUserAvatar
           width='500px'
-          botAvatar='avatarResponsable.png'
+          botAvatar='../avatarResponsable.png'
           headerTitle="Responsable Ecole du code"
           //speechSynthesis={{ enable: true, lang: 'fr' }}
           steps={[
