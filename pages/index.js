@@ -1,8 +1,6 @@
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from 'styled-components';
 
-
-
 export default function Home() {
   const theme = {
     background: 'white',
@@ -23,18 +21,18 @@ export default function Home() {
        .iBOxRA{
         width: 300px
       }
-      // .dNHtKL:disabled{
-      //   background: none 
-      // }
+      .dNHtKL:disabled{
+        background: none 
+      }
       .bZjSBb{
         width:880px
       }
-      // .hDiPRc{
-      //   position: unset
-      // }
-      // .dNHtKL{
-      //   border-top: none 
-      // }
+      .hDiPRc{
+        position: unset
+      }
+      .dNHtKL{
+        border-top: none 
+      }
       .klvvmm{
         width:300px;
 
@@ -42,15 +40,16 @@ export default function Home() {
       
       `}</style>
       <ThemeProvider theme={theme}>
-        <ChatBot style={{borderRadius: "0px",top:"-600px",left:"280px",height: "550px",width:"500px"}}
+        <ChatBot style={{borderRadius: "0px",top:"-790px",left:"380px",height: "690px",width:"500px"}}
           botDelay="1300"
           bubbleOptionStyle= {{ backgroundColor: "white", color: "#F16E00", border: '1px solid #F16E00'}}
-          footerStyle ={{display: "none", height: "30px"}}
+          footerStyle ={{display: "none", height: "0px"}}
           bubbleStyle={{width: "450px"}}
           placeholder=''
           hideUserAvatar
-          width='500px'
-          botAvatar='../avatarResponsable.png'
+          // width='500px'
+          
+          botAvatar='../images/avatarResponsable.png'
           headerTitle="Responsable Ecole du code"
           //speechSynthesis={{ enable: true, lang: 'fr' }}
           steps={[

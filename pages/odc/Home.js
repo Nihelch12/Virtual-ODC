@@ -1,14 +1,37 @@
 import Head from "next/head"
 import dynamic from 'next/dynamic';
 import Script from "next/script";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from "next/image";
 
 export default function Home() {
     const [scriptAlert, setScriptAlert] = useState();
     function toggle() {
-        document.getElementById('blur').classList.toggle('active');
+        var blur = document.getElementsByClassName('blur');
+
+        for (var i = 0; i < blur.length; i++) {
+            blur[i].classList.toggle('active')
+        }
+        document.getElementById('popup').classList.toggle('active');
     };
+
+    function togglePlay() {
+        var myAudio = document.getElementById("myAudio");
+        return myAudio.paused ? myAudio.play() : myAudio.pause();
+    };
+
+   
+
+    useEffect(() => {
+        // toggle()
+         return () => toggle();
+    }, []);
+
+    // useEffect(() => {
+    //     toggle()     
+    // }, []);
+
+
 
     return (
         <>
@@ -24,47 +47,55 @@ export default function Home() {
                     />
                 </Head>
             </div>
-            <div id="wrap">
+            <div id="wrap" >
                 <div id="inner">
-                    {/* <div className="loader" id="loader">
-                        <img src="Cloud-transition(1).png" alt="" />
-                    </div> */}
-                    <button onClick={toggle}> test</button>
-
-                    <audio autoPlay src="../../audio/Playground Fun.mp3"></audio>
-                    <div className="icon">
+                    <audio
+                        id="myAudio" src="../../audio/Playground Fun.mp3" autoPlay>
+                    </audio>
+                    <div className="keypoint-calendar">
+                        <img src="/images/Calendar.png" style={{height: "30px", width: "33px"}} />
+                    </div>
+                    <div className="keypoint-audio">
+                        <img src="/images/audio.png" style={{height: "25px", width: "28px"}} value="sound" onClick={togglePlay}/>
+                    </div>
+                    <div className="icon blur">
                         <div className="tooltip" style={{ top: "240px", left: " 715px" }}>
                             Ecole du code
                         </div>
                         <div className="keypoint-1" style={{ height: "30px", width: "30px" }}>
-                            <a href="odc.html"></a>
+                            <a href="/odc/ODC"></a>
                         </div>
                     </div>
 
-                    <div className="icon">
+                    <div className="icon blur">
                         <div className="tooltip" style={{ top: "480px", left: " 618px" }}>
                             Orange Fab
                         </div>
                         <div className="keypoint-2" style={{ height: "30px", width: "30px" }}>
-                            {/* <a onClick="appearP2()"></a> */}
+                            <a href="/odc/OrangeFab"></a>
                         </div>
                     </div>
 
-                    <div className="icon">
+                    <div className="icon blur">
                         <div className="tooltip" style={{ top: "635px", left: " 1271px" }}>
                             Fab Lab
                         </div>
-                        <div  className="keypoint-3" style={{ height: "30px", width: "30px" }}>
-                            {/* <a onClick="appearP3()"></a> */}
+                        <div className="keypoint-3" style={{ height: "30px", width: "30px" }}>
+                            <a href="/odc/FabLab"></a>
                         </div>
                     </div>
-
                     <div>
-                        <video  id="blur" autoPlay="autoPlay" loop="loop" muted src="../videos/VODCtest13.mp4"> </video>
-
+                        <video className="blur" autoPlay="autoPlay" loop="loop" muted src="../videos/VODCTest15.mp4"> </video>
                     </div>
                 </div>
             </div>
+
+            <div id="popup">
+                <h3>Welcome to the Orange Digital Center Virtual Tour</h3>
+                <p> Orange Digital Center houses four strategic programs under the same roof : the coding school, the FabLab Solidaire, Orange Fab and Orange Digital Ventures Africa. </p>
+                <button className="button" href="#" onClick={toggle}>Start the tour</button>
+            </div>
+
             <link rel="stylesheet" href="../../css/style.css" />
             <Script type="text/javascript" src="../../components/LcMouseDrag.js"
                 onLoad={() => {
@@ -72,14 +103,6 @@ export default function Home() {
                 }}>
             </Script>
             <Script src="../../components/lc-mouse-drag.min.js" type="text/javascript"></Script>
-            {/* <script type="text/javascript"
-                onLoad={() => {
-                    function toggle(){
-                        document.getElementById('blur').classList.toggle('active')
-                    }
-                }}
-            >
-            </script> */}
 
 
         </>

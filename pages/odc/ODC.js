@@ -1,49 +1,61 @@
 
 import dynamic from 'next/dynamic';
 import Head from "next/head"
-import Script from 'next/script';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import Script from "next/script";
+
 
 const Chat = dynamic(
     () => {
-      return import("../../pages/index");
+        return import("./Chat")
     },
     { ssr: false }
-  );
+);
+
+
 export default function Home() {
+    const [scriptAlert, setScriptAlert] = useState();
+
+    // const [modalState, setmodalState] = useState(false);
 
 
     return (
         <div>
             <Head>
-                <meta charset="utf-8" />
+
                 <title>Ecole du code</title>
+                <Image
+                    src="/images/menu.png"
+                    alt="ODC"
+                    width={1600}
+                    height={82}
+                    style={{ margin: "-4px" }}
+                />
             </Head>
 
-            <img src="/menu.png" style={{top:"0px" , left: "0px",  width:" 1920px",height: "100px", margin:"-20px" }} />
-                {/* <a style={{position:"absolute"}} href="/index.html" class="room__contact u-box-1by1 u-bg-white u-shadow u-round u-cursor-pointer router-link-active">
-                    <div>
-                        <img src="home-icon.png" height="100%" width="100%" style={{padding: "11px;"}} />
-                    </div>
-                </a> */}
-                {/* <button onclick="sampleFunction" value="Display" >Get Zip Help!</button> */}
+            <div id='wrap'>
+                <div id='inner'>
+                    <div className="icon" style={{ top: "80px", left: " 68px" }}>
 
-                <div id='wrap' >
-                    <div id='inner'>
-                        <video autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool7.mp4" style={{transform: "translateY(-100px) translateX(-460px)"}}> 
-                        </video>
-                       
                     </div>
+                    <video className='test2' autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" >
+                    </video>
                    
+
                 </div>
+            </div>
 
-               
-                <link rel="stylesheet" href="../css/style.css" /> 
+            <link rel="stylesheet" href="../../css/style.css" />
+            <Script type="text/javascript" src="../../components/LcMouseDrag.js"
+                onLoad={() => {
+                    setScriptAlert(window.lc_mouseDrag('#inner', 0.3, false, false));
+                }}>
+            </Script>
+            <Script src="../../components/lc-mouse-drag.min.js" type="text/javascript"></Script>
 
-{/* <MouseDrag/> */}
-               {/* <Script type="text/javascript"> "lc_mouseDrag ('#inner', 0.3, false, false)" </Script> */}
-             
-               <Chat />
+            <Chat />
         </div>
-        
+
     )
 }
