@@ -18,10 +18,21 @@ export default function Home() {
     const [scriptAlert, setScriptAlert] = useState();
 
     // const [modalState, setmodalState] = useState(false);
-
+    function toggleSound() {
+        const muteBtn = document.querySelector('.mute-button');
+        var myAudio = document.getElementById("myAudio");
+        muteBtn.addEventListener('click', () => {
+            myAudio.paused ? myAudio.play() : myAudio.pause();
+            muteBtn.querySelectorAll('span').forEach(el => {
+                el.classList.toggle('hidden');
+            });
+        });
+    }
 
     return (
         <div>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
             <Head>
 
                 <title>Ecole du code</title>
@@ -36,10 +47,19 @@ export default function Home() {
 
             <div id='wrap'>
                 <div id='inner'>
-                    <div className="icon" style={{ top: "80px", left: " 68px" }}>
-
+                <audio
+                        id="myAudio" src="../../audio/Playground Fun.mp3" autoPlay>
+                    </audio>
+                    <div className="keypoint-calendar">
+                        <img src="/images/calendar.png" style={{ height: "52px", width: "53px" }} />
                     </div>
-                    <video className='test2' autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" >
+                 
+                    <div className="keypoint-audio mute-button">
+                      <span className="hidden"><img src="/images/soundmute.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound}/> </span>  
+                      <span> <img src="/images/audio.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound}/> </span> 
+                    </div>
+                   
+                    <video style={{width:"100%"}} className='test2' autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" >
                     </video>
                    
 
@@ -54,7 +74,7 @@ export default function Home() {
             </Script>
             <Script src="../../components/lc-mouse-drag.min.js" type="text/javascript"></Script>
 
-            <Chat />
+            {/* <Chat /> */}
         </div>
 
     )

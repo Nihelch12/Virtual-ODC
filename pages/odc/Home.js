@@ -15,16 +15,23 @@ export default function Home() {
         document.getElementById('popup').classList.toggle('active');
     };
 
-    function togglePlay() {
-        var myAudio = document.getElementById("myAudio");
-        return myAudio.paused ? myAudio.play() : myAudio.pause();
-    };
 
-   
+    function toggleSound() {
+        const muteBtn = document.querySelector('.mute-button');
+        var myAudio = document.getElementById("myAudio");
+        muteBtn.addEventListener('click', () => {
+            myAudio.paused ? myAudio.play() : myAudio.pause();
+            muteBtn.querySelectorAll('span').forEach(el => {
+                el.classList.toggle('hidden');
+            });
+        });
+    }
+
+
 
     useEffect(() => {
         // toggle()
-         return () => toggle();
+        return () => toggle();
     }, []);
 
     // useEffect(() => {
@@ -35,7 +42,10 @@ export default function Home() {
 
     return (
         <>
+
             <div>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
                 <Head>
                     <title>Virtual Orange Digital Center</title>
                     <Image
@@ -53,13 +63,16 @@ export default function Home() {
                         id="myAudio" src="../../audio/Playground Fun.mp3" autoPlay>
                     </audio>
                     <div className="keypoint-calendar">
-                        <img src="/images/Calendar.png" style={{height: "30px", width: "33px"}} />
+                        <img src="/images/calendar.png" style={{ height: "52px", width: "53px" }} />
                     </div>
-                    <div className="keypoint-audio">
-                        <img src="/images/audio.png" style={{height: "25px", width: "28px"}} value="sound" onClick={togglePlay}/>
+                 
+                    <div className="keypoint-audio mute-button">
+                      <span className="hidden"><img src="/images/soundmute.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound}/> </span>  
+                      <span> <img src="/images/audio.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound}/> </span> 
                     </div>
+                   
                     <div className="icon blur">
-                        <div className="tooltip" style={{ top: "240px", left: " 715px" }}>
+                        <div className="tooltip" style={{ top: "239px", left: " 688px" }}>
                             Ecole du code
                         </div>
                         <div className="keypoint-1" style={{ height: "30px", width: "30px" }}>
@@ -68,7 +81,7 @@ export default function Home() {
                     </div>
 
                     <div className="icon blur">
-                        <div className="tooltip" style={{ top: "480px", left: " 618px" }}>
+                        <div className="tooltip" style={{ top: "477px", left: " 593px" }}>
                             Orange Fab
                         </div>
                         <div className="keypoint-2" style={{ height: "30px", width: "30px" }}>
@@ -77,7 +90,7 @@ export default function Home() {
                     </div>
 
                     <div className="icon blur">
-                        <div className="tooltip" style={{ top: "635px", left: " 1271px" }}>
+                        <div className="tooltip" style={{ top: "633px", left: " 1247px" }}>
                             Fab Lab
                         </div>
                         <div className="keypoint-3" style={{ height: "30px", width: "30px" }}>

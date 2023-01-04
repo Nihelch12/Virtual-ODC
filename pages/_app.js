@@ -16,11 +16,13 @@ function Loading() {
   return (
     <div className="loader" id="loader">
       <img src="../images/Cloud-transition(1).png" alt="" />
-    </div>)
+    </div>
+    )
 }
 function MyApp({ Component, pageProps }) {
 
-  return (<><Loading /><Component {...pageProps} /></>)
+  return (<>
+  <Loading /><Component {...pageProps} /></>)
 }
 
 export default MyApp
