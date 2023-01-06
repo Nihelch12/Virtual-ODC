@@ -1,18 +1,40 @@
+import { useEffect, useState } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+export default function Modal({show,onClose,children}) {
 
-export default function Modal(props) {
+    const [isBrowser, setIsBrowser] = useState(false);
+    
+    useEffect(() => {
+        setIsBrowser(true)    
+    }, []);
 
-    const modalState = props.toggle
-    const action = props.action
+    const handleClose = (e) =>{
+        e.preventDefault();
+        onClose();
+    };
 
-    return (
-        <div className={"container" + (modalState ? " container-active" : "")}   >
+    const modalContent = show ? (
+        <div className="overlay" >
             <div className="modal">
-                modal content
-                <div className="close" onClick={action}>
+                <div className="modalheader">
+                    <a href="#" onClick={handleClose}>
+                        <button>Close</button>
+                    </a>
                 </div>
+                <div className="modalbody">{children}</div>
             </div>
             <link rel="stylesheet" href="../../css/style.css" />
         </div>
 
-    )
+    ): null;
+
+    if (isBrowser){
+        return ReactDOM.createPortal(
+            modalContent,
+            document.getElementById("modal-root")
+        )
+    } else {
+        return null;
+    }
 }

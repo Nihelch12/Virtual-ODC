@@ -4,20 +4,21 @@ import Head from "next/head"
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Script from "next/script";
+import Modal from '../../public/components/Modal';
+import Chat from './Chat'
 
-
-const Chat = dynamic(
-    () => {
-        return import("./Chat")
-    },
-    { ssr: false }
-);
+// const Chat = dynamic(
+//     () => {
+//         return import("./Chat")
+//     },
+//     { ssr: false }
+// );
 
 
 export default function Home() {
     const [scriptAlert, setScriptAlert] = useState();
+    const [showModal, setShowModal] = useState(false);
 
-    // const [modalState, setmodalState] = useState(false);
     function toggleSound() {
         const muteBtn = document.querySelector('.mute-button');
         var myAudio = document.getElementById("myAudio");
@@ -28,10 +29,26 @@ export default function Home() {
             });
         });
     }
+    var difference = 2;
+    var intervalID = 0;
+    var width = 100;
+    function increase() {
+        intervalID = setInterval(zoomIn, 20);
+    }
+
+    function zoomIn() {
+        if (width < 200) {
+            width = width + difference;
+            document.getElementById('video').style.width = width;
+        }
+        else {
+            clearInterval(intervalID);
+        }
+    }
 
     return (
         <div>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
             <Head>
 
@@ -47,21 +64,33 @@ export default function Home() {
 
             <div id='wrap'>
                 <div id='inner'>
-                <audio
+                    <audio
                         id="myAudio" src="../../audio/Playground Fun.mp3" autoPlay>
                     </audio>
                     <div className="keypoint-calendar">
                         <img src="/images/calendar.png" style={{ height: "52px", width: "53px" }} />
                     </div>
-                 
+
                     <div className="keypoint-audio mute-button">
-                      <span className="hidden"><img src="/images/soundmute.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound}/> </span>  
-                      <span> <img src="/images/audio.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound}/> </span> 
+                        <span className="hidden"><img src="/images/soundmute.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound} /> </span>
+                        <span> <img src="/images/audio.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound} /> </span>
                     </div>
-                   
-                    <video style={{width:"100%"}} className='test2' autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" >
+                    <div className="keypoint-chat">
+                        <img src="/images/chat.png" style={{ height: "30px", width: "30px" }}
+                            onClick={() => {
+                                setShowModal(true);
+                                increase();
+                            }}
+                        />
+                    </div>
+                    <Chat show={showModal} />
+                    <div className="keypoint-home">
+                        <a href='/odc/Home'>
+                            <img src="/images/Home.png" style={{ height: "52px", width: "53px" }} />
+                        </a>
+                    </div>
+                    <video id='video' style={{ width: "100%" }} className='test2' autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" >
                     </video>
-                   
 
                 </div>
             </div>

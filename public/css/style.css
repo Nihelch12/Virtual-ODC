@@ -260,10 +260,10 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
 
 #popup {
     position: fixed;
-    top: 690px;
-    left: 1246px;
-    width: 300px;
-    height: 380px;
+    top: 672px;
+    left: 1240px;
+    width: 335px;
+    height: 413px;
     padding: 15px;
     transform: translate(-50%, -50%);
     background: #fff;
@@ -282,20 +282,20 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
-    top: 690px;
-    left: 1246px;
+   
 }
 
 .button {
+    position: absolute;
+    top:74%;
+    right: 25px;
+    transform: translateY(-50%);
     border: none;
-    width: 100px;
-    height: 30px;
-    background-color: #ff5901;
-    top: 1017px;
-    left: 1447px;
+    width: 140px;
+    height: 39px;
+    font-size:medium;
+    background-color: #FF7900;
     letter-spacing: -0.1px;
-    text-align: left;
-
 }
 
 .button:hover {
@@ -305,98 +305,107 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
 }
 
 .test1 {
-    /* bottom: 0;
-       right: 0;
-       position: fixed;
-       z-index: 3000; */
-    position: relative;
     margin-top: -10%;
     margin-left: -9%;
-    /* margin-bottom: -10%; */
 }
 
 .test2 {
-    position: relative;
-    /* margin-top: -15%;
-    margin-left: -30%;  
-    
-    */
-    width: 100%;
-
+   width: 100%;
 }
 
 .test3 {
-    position: relative;
     margin-top: -15%;
     margin-left: -30%;
 }
 
-.container {
-    position: fixed;
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid brown;
-    visibility: hidden;
-    opacity: 0;
-}
-
-.container.active {
-    visibility: visible;
-    opacity: 1;
-}
-
-.modal {
-    width: 90%;
-    height: 90%;
-    background-color: rgb(0, 0, 0);
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url('/images/close.png');
-    width: 30px;
-    height: 30px;
-    background-repeat: no-repeat;
-    cursor: pointer
-}
-
-.cont {
-    padding: 0 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 95vh;
-
-}
-
 .keypoint-audio img {
     position: absolute;
-    top: 728px;
-    left: 225px;
+    top: 90%;
+    left: 16%;
 }
 
 .keypoint-audio img:hover {
     cursor: pointer;
 }
 
-.keypoint-calendar > img:hover {
-    cursor:pointer;
+.keypoint-calendar>img:hover {
+    cursor: pointer;
 }
 
 .keypoint-calendar img {
     position: absolute;
-    top: 718px;
-    left:154px;
+   
+    top: 89%;
+    left: 11%;
 }
 
 .hidden {
     display: none;
-  }
+}
+
+.h1 {
+    font-weight: 70 bold;
+    font-size: 15px;
+    word-spacing: -28;
+
+}
+
+.p {
+    font-size: 13px;
+    color: #000000;
+    word-spacing: -11;
+}
+
+.keypoint-home img{
+    position: absolute;
+    top: 89%;
+    left: 6%;
+    z-index: 0;
+}
+
+.keypoint-home>img:hover {
+    cursor: pointer;
+}
+
+.keypoint-chat img{
+    position: absolute;
+    top: 70%;
+    left: 51%;
+}
+
+.keypoint-chat>img:hover {
+    cursor: pointer;
+}
+
+.modal{
+    background: white;
+    width: 500px;
+    height: 600px;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 100;
+}
+.modalheader{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 25px;
+}
+.modalbody{
+    padding-top: 10px;
+}
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: center;
+   
+}
+.modalanimation{
+    transition: opacity 0.3s,visibility 0.5s transform 0.5s;
+    transform: scale(1);
+}

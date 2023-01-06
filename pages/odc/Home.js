@@ -6,6 +6,8 @@ import Image from "next/image";
 
 export default function Home() {
     const [scriptAlert, setScriptAlert] = useState();
+    const [isFirstRun, setIsFirstRun] = useState(true);
+ 
     function toggle() {
         var blur = document.getElementsByClassName('blur');
 
@@ -30,14 +32,15 @@ export default function Home() {
 
 
     useEffect(() => {
-        // toggle()
+        window.addEventListener('beforeunload',()=>{
+            sessionStorage.setItem('isFirstRun',false)
+        })
         return () => toggle();
     }, []);
 
-    // useEffect(() => {
-    //     toggle()     
-    // }, []);
-
+    useEffect(() => {
+        setIsFirstRun(sessionStorage.getItem('isFirstRun'))    
+    }, [isFirstRun]);
 
 
     return (
@@ -102,13 +105,16 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            
 
+            if (this.isFirstRun == null) 
+            {
             <div id="popup">
-                <h3>Welcome to the Orange Digital Center Virtual Tour</h3>
+                <h1>Welcome to the Orange Digital Center Virtual Tour</h1>
                 <p> Orange Digital Center houses four strategic programs under the same roof : the coding school, the FabLab Solidaire, Orange Fab and Orange Digital Ventures Africa. </p>
-                <button className="button" href="#" onClick={toggle}>Start the tour</button>
+                <button className="button" onClick={toggle}>Start the tour</button>
             </div>
-
+        }
             <link rel="stylesheet" href="../../css/style.css" />
             <Script type="text/javascript" src="../../components/LcMouseDrag.js"
                 onLoad={() => {

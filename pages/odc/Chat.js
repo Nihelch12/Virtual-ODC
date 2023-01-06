@@ -1,9 +1,35 @@
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from 'styled-components';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-export default function Chat(props) {
-    const modalState= props.toggle
-   
+export default function Chat({show,onClose,children,onClick}) {
+  const [isBrowser, setIsBrowser] = useState(false);
+  
+
+  useEffect(() => {
+    setIsBrowser(true)
+  }, []);
+
+  const handleClose = (onClick) => {
+    e.preventDefault();
+    onClose();
+  };
+
+  //  const getConfig = (onClick) => {
+  //   const config = {
+    
+  //     customComponents: {
+  //        // Replaces the default header
+  //       header: () => <div className="modalheader">
+  //       <a href="#" onClick={handleClose}>
+  //         <button>Close</button>
+  //       </a>
+  //     </div>
+  //     },
+  //   };
+  //   }
   const theme = {
     background: 'white',
     fontFamily: 'Helvetica Neue',
@@ -14,11 +40,12 @@ export default function Chat(props) {
     botFontColor: '#000000',
     userBubbleColor: '#F16E00',
     userFontColor: '#ffffff',
-    outerWidth: '26px'
+    outerWidth: '26px',
+    floating: true,
     
   };
-  return (
-    <div style={{ display:"flex", justifyContent: "center"}}>
+ const modalContent = show ?  (
+    <div >
       <style global js>{`
        .iBOxRA{
         width: 300px
@@ -38,23 +65,29 @@ export default function Chat(props) {
       .klvvmm{
         width:300px;
       }
+
     
       `}</style>
+
       
-      <ThemeProvider theme={theme}>
-        
-        <ChatBot  style={{borderRadius: "0px",top:"-790px",left:"380px",height: "690px",width:"500px"}}
+
+      <ThemeProvider theme={theme} >
+      
+
+        <ChatBot className="modalanimation" style={{ borderRadius: "0px", top: "-700px", left: "860px", height: "560px", width: "500px"}}
+      
+          
           botDelay="1300"
-          bubbleOptionStyle= {{ backgroundColor: "white", color: "#F16E00", border: '1px solid #F16E00'}}
-          footerStyle ={{display: "none", height: "0px"}}
-          bubbleStyle={{width: "450px"}}
+          bubbleOptionStyle={{ backgroundColor: "white", color: "#F16E00", border: '1px solid #F16E00' }}
+          footerStyle={{ display: "none", height: "0px" }}
+          bubbleStyle={{ width: "450px" }}
           placeholder=''
           hideUserAvatar
-          
-          // width='500px'
-          
+        
           botAvatar='../images/avatarResponsable.png'
           headerTitle="Responsable Ecole du code"
+       
+
           //speechSynthesis={{ enable: true, lang: 'fr' }}
           steps={[
             {
@@ -75,7 +108,7 @@ export default function Chat(props) {
               id: '3',
               options: [
                 { value: 1, label: 'Merci' },
-                { value: 2, label: 'Merci , sinon je veux savoir un peu à propos le Fab Lab Orange?',  trigger: '6'  },
+                { value: 2, label: 'Merci , sinon je veux savoir un peu à propos le Fab Lab Orange?', trigger: '6' },
 
               ],
             },
@@ -103,11 +136,21 @@ export default function Chat(props) {
               ],
             },
           ]}
-        />
+        /> 
       </ThemeProvider>
-    
+      <div className="modalbody">{children}</div>
     </div>
 
-  )
+  ): null;
+
+
+  if (isBrowser){
+    return ReactDOM.createPortal(
+        modalContent,
+        document.getElementById("modal-root")
+    )
+} else {
+    return null;
+}
 
 }
