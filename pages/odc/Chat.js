@@ -4,33 +4,30 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export default function Chat({show,onClose,children,onClick}) {
+export default function Chat({onClose,children,show}) {
   const [isBrowser, setIsBrowser] = useState(false);
-  
 
+
+  const [state, setState] = useState({
+    opened:true
+  })
+  
+   const { opened } = state;
+   const toggleFloating=()=>{
+    setState({
+      opened: false
+    });   
+    onClose();
+  }
+ 
   useEffect(() => {
+    
     setIsBrowser(true)
   }, []);
 
-  const handleClose = (onClick) => {
-    e.preventDefault();
-    onClose();
-  };
 
-  //  const getConfig = (onClick) => {
-  //   const config = {
-    
-  //     customComponents: {
-  //        // Replaces the default header
-  //       header: () => <div className="modalheader">
-  //       <a href="#" onClick={handleClose}>
-  //         <button>Close</button>
-  //       </a>
-  //     </div>
-  //     },
-  //   };
-  //   }
   const theme = {
+    
     background: 'white',
     fontFamily: 'Helvetica Neue',
     headerBgColor: 'black',
@@ -41,9 +38,10 @@ export default function Chat({show,onClose,children,onClick}) {
     userBubbleColor: '#F16E00',
     userFontColor: '#ffffff',
     outerWidth: '26px',
-    floating: true,
+    
     
   };
+ 
  const modalContent = show ?  (
     <div >
       <style global js>{`
@@ -65,7 +63,7 @@ export default function Chat({show,onClose,children,onClick}) {
       .klvvmm{
         width:300px;
       }
-
+  
     
       `}</style>
 
@@ -73,20 +71,22 @@ export default function Chat({show,onClose,children,onClick}) {
 
       <ThemeProvider theme={theme} >
       
-
-        <ChatBot className="modalanimation" style={{ borderRadius: "0px", top: "-700px", left: "860px", height: "560px", width: "500px"}}
       
-          
+        <ChatBot  className="modalanimation" style={{ borderRadius: "0px", top: "-720px", left: "860px", height: "620px", width: "500px"}}
+      
           botDelay="1300"
           bubbleOptionStyle={{ backgroundColor: "white", color: "#F16E00", border: '1px solid #F16E00' }}
-          footerStyle={{ display: "none", height: "0px" }}
+          footerStyle={{ display: "none" }}
           bubbleStyle={{ width: "450px" }}
           placeholder=''
           hideUserAvatar
-        
+          
           botAvatar='../images/avatarResponsable.png'
           headerTitle="Responsable Ecole du code"
-       
+          floating={true}
+          opened={opened}
+          toggleFloating={toggleFloating}
+  
 
           //speechSynthesis={{ enable: true, lang: 'fr' }}
           steps={[
@@ -138,6 +138,7 @@ export default function Chat({show,onClose,children,onClick}) {
           ]}
         /> 
       </ThemeProvider>
+     
       <div className="modalbody">{children}</div>
     </div>
 
@@ -152,5 +153,5 @@ export default function Chat({show,onClose,children,onClick}) {
 } else {
     return null;
 }
+  }
 
-}

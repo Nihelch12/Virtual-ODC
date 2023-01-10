@@ -1,6 +1,10 @@
 import '../styles/globals.css'
+import '../public/css/style.css'
+
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
+import React from 'react';
+import { StrictMode } from 'react';
 
 // function ToggleSound() {
 
@@ -67,17 +71,22 @@ function MyApp({ Component, pageProps }) {
   if (isFirstRun == 'false') {
     return (
       <>
+      <StrictMode>
         <Loading />
+        </StrictMode>
         <Component {...pageProps} />
         {/* <ToggleSound /> */}
+        
       </>
     )
   } else {
 
     return (
       <>
+       <StrictMode/>
         <Component {...pageProps} />
         {/* <ToggleSound /> */}
+      
       </>
     )
   }

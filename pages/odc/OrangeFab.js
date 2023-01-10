@@ -23,7 +23,7 @@ export default function Home() {
         <div>
             <Head>
 
-                <title>Ecole du code</title>
+                <title>Orange Fab</title>
                 <Image
                     src="/images/menu.png"
                     alt="ODC"
@@ -47,7 +47,7 @@ export default function Home() {
                       <span> <img src="/images/audio.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound}/> </span> 
                     </div>
                 <div className="keypoint-home">
-                <a href='/odc/Home'>
+                <a href='/'>
                         <img src="/images/Home.png" style={{ height: "52px", width: "53px" }}  />
                         </a>
                     </div>
@@ -55,6 +55,7 @@ export default function Home() {
                     </video>
                 </div>
             </div>
+            
 
             <link rel="stylesheet" href="../../css/style.css" />
             <Script type="text/javascript" src="../../components/LcMouseDrag.js"

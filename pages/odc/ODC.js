@@ -2,22 +2,17 @@
 import dynamic from 'next/dynamic';
 import Head from "next/head"
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { StrictMode, useEffect, useState } from 'react';
 import Script from "next/script";
-import Modal from '../../public/components/Modal';
 import Chat from './Chat'
-
-// const Chat = dynamic(
-//     () => {
-//         return import("./Chat")
-//     },
-//     { ssr: false }
-// );
+import Modal from '../Modal';
 
 
 export default function Home() {
     const [scriptAlert, setScriptAlert] = useState();
     const [showModal, setShowModal] = useState(false);
+    const [showCalendar, setShowCalendar] = useState(false);
+
 
     function toggleSound() {
         const muteBtn = document.querySelector('.mute-button');
@@ -29,29 +24,52 @@ export default function Home() {
             });
         });
     }
-    var difference = 2;
-    var intervalID = 0;
-    var width = 100;
-    function increase() {
-        intervalID = setInterval(zoomIn, 20);
+
+
+    function do_VidZoom() {
+        //# setup animation keyframes : from scaleX/Y = 1 (normal size) up to scaleX/Y = 2 (double size)
+        var frames_VidZoom_In = [
+            { transform: 'scale(1, 1) ', transition: 'transform 0.1s' },
+
+            { transform: 'scale(1.4, 1.4) translate(-10%,-10%)', transition: 'transform 0.1s' },
+
+
+        ];
+
+        //# apply animation to an element
+        document.getElementById("vid").animate(frames_VidZoom_In, { duration: 2000, easing: 'ease-in' });
+
+
+        //# set final size after animation ends ( or else it jumps back to scale=1 )
+        document.getElementById("vid").style.transform = "scale(1.4, 1.4) translate(-10%,-10%)";
+
     }
 
-    function zoomIn() {
-        if (width < 200) {
-            width = width + difference;
-            document.getElementById('video').style.width = width;
-        }
-        else {
-            clearInterval(intervalID);
-        }
+
+    function decrease() {
+        //# setup animation keyframes : from scaleX/Y = 1 (normal size) up to scaleX/Y = 2 (double size)
+        var frames_VidZoom_In = [
+
+
+            { transform: 'scale(1.4, 1.4) translate(-10%,-10%)', transition: 'transform 0.1s' },
+            { transform: 'scale(1, 1) ', transition: 'transform 0.1s' },
+
+
+        ];
+
+        //# apply animation to an element
+        document.getElementById("vid").animate(frames_VidZoom_In, { duration: 2000, easing: 'ease-out' });
+
+
+        //# set final size after animation ends ( or else it jumps back to scale=1 )
+        document.getElementById("vid").style.transform = "scale(1, 1) ";
+
     }
 
     return (
         <div>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
             <Head>
-
                 <title>Ecole du code</title>
                 <Image
                     src="/images/menu.png"
@@ -68,8 +86,15 @@ export default function Home() {
                         id="myAudio" src="../../audio/Playground Fun.mp3" autoPlay>
                     </audio>
                     <div className="keypoint-calendar">
-                        <img src="/images/calendar.png" style={{ height: "52px", width: "53px" }} />
+                        <img onClick={() => {
+                            setShowCalendar(true);
+
+                        }} src="/images/calendar.png" style={{ height: "52px", width: "53px" }} />
                     </div>
+                    <Modal showCal={showCalendar} onClose={() => {
+                        setShowCalendar(false);
+
+                    }} />
 
                     <div className="keypoint-audio mute-button">
                         <span className="hidden"><img src="/images/soundmute.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound} /> </span>
@@ -79,18 +104,26 @@ export default function Home() {
                         <img src="/images/chat.png" style={{ height: "30px", width: "30px" }}
                             onClick={() => {
                                 setShowModal(true);
-                                increase();
+                                do_VidZoom()
                             }}
                         />
                     </div>
-                    <Chat show={showModal} />
+
+                    <Chat show={showModal} onClose={decrease} />
                     <div className="keypoint-home">
-                        <a href='/odc/Home'>
+                        <a href='/'>
                             <img src="/images/Home.png" style={{ height: "52px", width: "53px" }} />
                         </a>
                     </div>
-                    <video id='video' style={{ width: "100%" }} className='test2' autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" >
-                    </video>
+                    {/* <video id='vid' width={100} className='test2' src="../videos/CodingSchool9.mp4" >
+                    </video> */}
+                    <div >
+
+                        <video autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" id="vid" width="100%">
+
+                        </video>
+
+                    </div>
 
                 </div>
             </div>

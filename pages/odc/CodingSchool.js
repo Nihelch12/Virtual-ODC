@@ -3,22 +3,22 @@ import Modal from '../../public/components/Modal';
 
 export default function Home() {
 
-    const [modalState, setmodalState] = useState(false);
+    // const [modalState, setmodalState] = useState(false);
 
-    function openModal() {
-        setmodalState(!modalState)
-    }
+    // function openModal() {
+    //     setmodalState(!modalState)
+    // }
 
-    return (
-        <div className='cont' >
+    // return (
+    //     <div className='cont' >
 
-            <button onClick={openModal}>open me</button>
-            {modalState.toString()}
+    //         <button onClick={openModal}>open me</button>
+    //         {modalState.toString()}
 
-            <Modal toggle={modalState} action={openModal} />
+    //         <Modal toggle={modalState} action={openModal} />
 
-            <link rel="stylesheet" href="../../css/style.css" />
+    //         <link rel="stylesheet" href="../../css/style.css" />
 
-        </div>
-    )
+    //     </div>
+    // )
 }
