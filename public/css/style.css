@@ -418,8 +418,11 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     /* animation-name: animatetop;
     animation-duration: 0.3s; */
 }
-
-@-webkit-keyframes animatetop {
+.modalanimation{
+    transition: opacity 0.3s,visibility 0.5s transform 0.5s;
+    transform: scale(1);
+}
+/* @-webkit-keyframes animatetop {
     from {
       top: -300px;
       opacity: 0;
@@ -439,7 +442,7 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
       top: 0;
       opacity: 1;
     }
-  }
+  } */
 
 .modalheader {
     display: flex;
@@ -448,9 +451,9 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     background-color: #000000;
 }
 
-/* .modalbody {
+.modalbody {
     padding-top: 0px;
-} */
+}
 
 .overlay {
     position: absolute;

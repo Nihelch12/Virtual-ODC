@@ -72,7 +72,7 @@ export default function Chat({onClose,children,show}) {
       <ThemeProvider theme={theme} >
       
       
-        <ChatBot  className="modalanimation" style={{ borderRadius: "0px", top: "-720px", left: "860px", height: "620px", width: "500px"}}
+        <ChatBot className="modalanimation" style={{ borderRadius: "0px", top: "-720px", left: "860px", height: "620px", width: "500px"}}
       
           botDelay="1300"
           bubbleOptionStyle={{ backgroundColor: "white", color: "#F16E00", border: '1px solid #F16E00' }}

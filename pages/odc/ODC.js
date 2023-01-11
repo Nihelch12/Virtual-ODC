@@ -88,12 +88,10 @@ export default function Home() {
                     <div className="keypoint-calendar">
                         <img onClick={() => {
                             setShowCalendar(true);
-
                         }} src="/images/calendar.png" style={{ height: "52px", width: "53px" }} />
                     </div>
                     <Modal showCal={showCalendar} onClose={() => {
                         setShowCalendar(false);
-
                     }} />
 
                     <div className="keypoint-audio mute-button">
@@ -118,11 +116,8 @@ export default function Home() {
                     {/* <video id='vid' width={100} className='test2' src="../videos/CodingSchool9.mp4" >
                     </video> */}
                     <div >
-
                         <video autoPlay="autoPlay" loop="loop" muted src="../videos/CodingSchool9.mp4" id="vid" width="100%">
-
                         </video>
-
                     </div>
 
                 </div>

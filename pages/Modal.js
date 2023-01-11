@@ -17,7 +17,7 @@ export default function Modal({ showCal, onClose, children }) {
         onClose();
     };
 
-    const modalContent = showCal ? (
+    const modalContentt = showCal ? (
         <div className="overlay"  >
             <div className="modal">
                 <div className="modalheader">
@@ -38,7 +38,7 @@ export default function Modal({ showCal, onClose, children }) {
 
     if (isBrowserCalendar) {
         return ReactDOM.createPortal(
-            modalContent,
+            modalContentt,
             document.getElementById("modal-root")
         )
     } else {
