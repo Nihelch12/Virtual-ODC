@@ -322,6 +322,7 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     position: absolute;
     top: 90%;
     left: 16%;
+    z-index: 1;
 }
 
 .keypoint-audio:hover {
@@ -336,15 +337,18 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     height: 54px;
     width: 55px;
     border: 9px solid #fff;
+    z-index: 2;
+
     /* background-color: #ffb300; */
 
 }
 
-.key:hover{
+.key:hover {
     cursor: pointer;
     animation: puulseAnimation 2s ease-out infinite;
 
 }
+
 @keyframes puulseAnimation {
     100% {
         opacity: 0;
@@ -363,11 +367,14 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     position: absolute;
     top: 89%;
     left: 11%;
-    
+    z-index: 1;
+
+
 }
+
 .keypoint-calendar img:hover {
     cursor: pointer;
-    
+
 }
 
 .hidden {
@@ -391,7 +398,7 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     position: absolute;
     top: 89%;
     left: 6%;
-    z-index: 0;
+    z-index: 1;
 }
 
 .keypoint-home>img:hover {
@@ -399,9 +406,11 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
 }
 
 .keypoint-chat img {
-    position: absolute;
+    position: fixed;
     top: 70%;
     left: 51%;
+    z-index: 1;
+
 }
 
 .keypoint-chat>img:hover {
@@ -415,13 +424,17 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     border-radius: 0px;
     padding: 0px;
     z-index: 100;
+
     /* animation-name: animatetop;
     animation-duration: 0.3s; */
 }
-.modalanimation{
-    transition: opacity 0.3s,visibility 0.5s transform 0.5s;
+
+.modalanimation {
+    transition: opacity 0.3s, visibility 0.5s transform 0.5s;
     transform: scale(1);
+
 }
+
 /* @-webkit-keyframes animatetop {
     from {
       top: -300px;
@@ -453,7 +466,44 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
 
 .modalbody {
     padding-top: 0px;
+
 }
+
+.animate-bottom {
+    position: relative;
+    animation: animatebottom 0.7s;
+}
+.animate-top {
+    position: relative;
+    animation: animatetop 0.7s;
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -300px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+
+@keyframes animatetop {
+    from {
+        bottom: 0;
+        opacity: 1;
+    }
+
+    to {
+        bottom: -300px;
+        opacity: 0;
+        
+    }
+}
+
 
 .overlay {
     position: absolute;
@@ -465,5 +515,6 @@ body:not(.lc_mousedrag_is_mobile) #inner a {
     justify-content: center;
     align-items: center;
     background: center;
-}
 
+
+}

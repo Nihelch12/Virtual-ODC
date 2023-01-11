@@ -6,6 +6,7 @@ import { StrictMode, useEffect, useState } from 'react';
 import Script from "next/script";
 import Chat from './Chat'
 import Modal from '../Modal';
+import axios from 'axios';
 
 
 export default function Home() {
@@ -25,6 +26,17 @@ export default function Home() {
         });
     }
 
+    function calendarApi() {
+        axios.get('https://www.orangedigitalcenters.com/api/v1/client/country/TN/event/').then(response => {
+            console.log(response.data.data[0].translations.fr.title);
+            console.log(response.data.data[0].categories);
+            console.log(response.data.data[0].startDate);
+            console.log(response.data.data[0].endDate);
+
+        });
+    }
+
+
 
     function do_VidZoom() {
         //# setup animation keyframes : from scaleX/Y = 1 (normal size) up to scaleX/Y = 2 (double size)
@@ -37,12 +49,15 @@ export default function Home() {
         ];
 
         //# apply animation to an element
-        document.getElementById("vid").animate(frames_VidZoom_In, { duration: 2000, easing: 'ease-in' });
+        document.getElementById("vid").animate(frames_VidZoom_In, { duration: 700, easing: 'ease-in' });
 
 
         //# set final size after animation ends ( or else it jumps back to scale=1 )
         document.getElementById("vid").style.transform = "scale(1.4, 1.4) translate(-10%,-10%)";
-
+        document.getElementById('home').style.display = "none";
+        document.getElementById('audio').style.display = "none";
+        document.getElementById('chat').style.display = "none";
+        document.getElementById('calendar').style.display = "none";
     }
 
 
@@ -58,11 +73,17 @@ export default function Home() {
         ];
 
         //# apply animation to an element
-        document.getElementById("vid").animate(frames_VidZoom_In, { duration: 2000, easing: 'ease-out' });
+        document.getElementById("vid").animate(frames_VidZoom_In, { duration: 700, easing: 'ease-out' });
+        document.getElementById("chat").animate(frames_VidZoom_In, { duration: 700, easing: 'ease-out' });
 
 
         //# set final size after animation ends ( or else it jumps back to scale=1 )
         document.getElementById("vid").style.transform = "scale(1, 1) ";
+        document.getElementById('home').style.display = "block";
+        document.getElementById('audio').style.display = "block";
+        document.getElementById('chat').style.display = "block";
+        document.getElementById('calendar').style.display = "block";
+
 
     }
 
@@ -85,20 +106,21 @@ export default function Home() {
                     <audio
                         id="myAudio" src="../../audio/Playground Fun.mp3" autoPlay>
                     </audio>
-                    <div className="keypoint-calendar">
+                    <div id='calendar' className="keypoint-calendar">
                         <img onClick={() => {
                             setShowCalendar(true);
+                            calendarApi();
                         }} src="/images/calendar.png" style={{ height: "52px", width: "53px" }} />
                     </div>
                     <Modal showCal={showCalendar} onClose={() => {
                         setShowCalendar(false);
                     }} />
 
-                    <div className="keypoint-audio mute-button">
+                    <div id='audio' className="keypoint-audio mute-button">
                         <span className="hidden"><img src="/images/soundmute.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound} /> </span>
                         <span> <img src="/images/audio.png" style={{ height: "36px", width: "37px" }} value="sound" onClick={toggleSound} /> </span>
                     </div>
-                    <div className="keypoint-chat">
+                    <div id='chat' className="keypoint-chat">
                         <img src="/images/chat.png" style={{ height: "30px", width: "30px" }}
                             onClick={() => {
                                 setShowModal(true);
@@ -108,7 +130,7 @@ export default function Home() {
                     </div>
 
                     <Chat show={showModal} onClose={decrease} />
-                    <div className="keypoint-home">
+                    <div id='home' className="keypoint-home">
                         <a href='/'>
                             <img src="/images/Home.png" style={{ height: "52px", width: "53px" }} />
                         </a>

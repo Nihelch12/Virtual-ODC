@@ -5,7 +5,12 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import React from 'react';
 import { StrictMode } from 'react';
+import "@fortawesome/fontawesome-svg-core/styles.css"; 
 
+import { config } from "@fortawesome/fontawesome-svg-core";
+// Tell Font Awesome to skip adding the CSS automatically 
+// since it's already imported above
+config.autoAddCss = false; 
 // function ToggleSound() {
 
 //   useEffect(() => {
